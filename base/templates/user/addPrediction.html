@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div class="loader"></div>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'user/header.html' %}
+
+
+        {% include 'user/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form action="/user/insert_prediction" method="post">
+                                    <div class="card-header">
+                                        <h4>Add Information</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Date</label>
+                                            <input type="date" name="prediction_date" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Select</label>
+                                            <select class="form-control" name="prediction_statename">
+                                                <option value="gujarat">Gujarat</option>
+                                                <option value="maharasthra">Maharashtra</option>
+                                                <option value="tamilnadu">Tamil Nadu</option>
+                                                <option value="madhyapradesh">Madhya Pradesh</option>
+                                                <option value="jammukashmir">Jammu &
+                                                    <Kashmir></Kashmir>
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Active Cases</label>
+                                            <input type="number" name="prediction_activecases" class="form-control"
+                                                   required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Cured Cases</label>
+                                            <input type="number" name="prediction_curedcases" class="form-control"
+                                                   required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Total Confirmed Cases</label>
+                                            <input type="number" name="prediction_confirmcases" class="form-control"
+                                                   required="">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button class="btn btn-primary">Predict</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        {% include 'user/footer.html' %}
+
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>

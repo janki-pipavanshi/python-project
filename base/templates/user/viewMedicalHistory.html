@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/datatables.min.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'user/header.html' %}
+
+
+        {% include 'user/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <form method="post" action="/user/view_medicalhistory">
+                                    <div class="card-header">
+                                        <h4>Medical History</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="tableExport"
+                                                   style="width:100%;">
+                                                <thead>
+                                                <tr>
+
+                                                    <th>Medcial History Date</th>
+                                                    <th>More Details</th>
+                                                    <th>Medical History File</th>
+                                                </tr>
+                                                </thead>
+
+                                                {% for i in medicalhistory_vo_list %}
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>{{ i['medicalhistory_date'] }}</td>
+                                                        <td>
+                                                            <i class="fa fa-info-circle" style="font-size: 20px"
+                                                               data-toggle="modal"
+                                                               data-target=".bd-example-modal-lg"
+                                                               onclick="loadMedicalHisotryDetails({{ i['medicalhistory_id'] }})"></i>
+                                                        </td>
+                                                        <td>
+                                                            {% if image_list !=None %}
+                                                                {% for index in image_list %}
+                                                                    {% for data in index %}
+                                                                        {% if data['medicalhistory_date']==  i['medicalhistory_date'] %}
+                                                                            <a href="{{ data['medicalhistory_image_path'] }}{{ data['medicalhistory_image_name'] }}">
+                                                                            <img src="../../static/adminResources/image/3.png"
+                                                                                 style="height:50px;"></a>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                No Image Available !
+                                                            {% endif %}
+                                                        </td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                {% endfor %}
+
+                                            </table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        {% include 'user/footer.html' %}
+
+    </div>
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel" style="color: #000000;">Medical Record</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title m-0" style="color: #0a568c;">Patient Information</div>
+                        <hr class="mt-0" style="background-color:#dd0000;">
+
+                        <div class="row">
+                            <div class="col-md-6" style="color: #000000;">
+                                <address>
+                                    <strong>Birth Date: </strong><span id="birthDate"></span>
+                                    <br><br>
+                                    <strong>Weight : </strong><span id="userWeight"></span>
+                                    <br><br>
+                                    <strong>Height : </strong><span id="userHeight"></span>
+                                    <br><br>
+                                    <strong>Age : </strong><span id="userAge"></span>
+                                    <br><br>
+                                </address>
+                            </div>
+                            <div class="col-md-6 text-md-right" style="color: #000000;">
+                                <address>
+                                    <strong>Blood Group : </strong><span id="userBloodGroup"></span>
+                                    <br><br>
+                                    <strong>Disability : </strong><span id="userDisability"></span>
+                                    <br><br>
+                                    <strong>Allergy : </strong><span id="userAllergy"></span>
+                                    <br><br>
+                                    <strong>Disease Inherited : </strong><span id="diseaseInherit"></span>
+                                    <br><br>
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="section-title m-0" style="color: #0a568c;">Medical Information</div>
+                        <hr class="mt-0" style="background-color:#dd0000;">
+                        <div class="row" style="color: #000000;">
+
+                            <div class="col-md-3">
+                                <strong>Disease Name: </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="diseaseName"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <strong>Disease Date: </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="diseaseDate"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <strong>Hospital Name : </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="hospitalName"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <strong>Doctor Name : </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="doctorName"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <strong>Symptoms : </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="diseaseSymptoms"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <strong>Description : </strong>
+                            </div>
+                            <div class="col-md-9">
+                                <span id="historyDescription"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <hr style="background-color:#dd0000;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<script src="../../static/adminResources/js/datatables.min.js"></script>
+<script src="../../static/adminResources/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../static/adminResources/js/dataTables.buttons.min.js"></script>
+<script src="../../static/adminResources/js/buttons.flash.min.js"></script>
+<script src="../../static/adminResources/js/jszip.min.js"></script>
+<script src="../../static/adminResources/js/pdfmake.min.js"></script>
+<script src="../../static/adminResources/js/vfs_fonts.js"></script>
+<script src="../../static/adminResources/js/buttons.print.min.js"></script>
+<script src="../../static/adminResources/js/datatables.js"></script>
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+
+
+</body>
+
+</html>

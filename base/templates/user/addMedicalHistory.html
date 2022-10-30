@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'user/header.html' %}
+
+
+        {% include 'user/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Upload Medical History</h4>
+                                </div>
+                                <form method="post" action="/user/insert_medicalhistory" enctype="multipart/form-data">
+
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Disease Name:"
+                                                       name="medicalhistoryDiseaseName" class="form-control"
+                                                       required="">
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Symptoms:" name="medicalhistorySymptoms"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Hospital Name:"
+                                                       name="medicalhistoryHospitalName" class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="Age when occured:"
+                                                       name="medicalhistoryAge"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Date of Disease"
+                                                       name="medicalhistoryDate"
+                                                       class="form-control" onfocus="(this.type='date')">
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Date of Birth"
+                                                       name="medicalhistoryBirthDate" class="form-control"
+                                                       onfocus="(this.type='date')">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="Height:" name="medicalhistoryHeight"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="weight:" name="medicalhistoryWeight"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Blood Group:"
+                                                       name="medicalhistoryBloodGroup" class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Doctor Name:"
+                                                       name="medicalhistoryDoctorname" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Allergy:" name="medicalhistoryAllergy"
+                                                       class="form-control">
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <input type="text"
+                                                       placeholder="Do You have any Disablity?(Write name OR NA)"
+                                                       name="medicalhistoryDisability" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="form-group col-6">
+                                                <label for="inherited">Is this diseases inherited?</label><br>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="customRadioInline1"
+                                                           name="medicalhistoryInherited"
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadioInline1" style="
+    color: black;
+    font-size: 12px;
+">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="customRadioInline2"
+                                                           name="medicalhistoryInherited"
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadioInline2" style="
+    color: black;
+    font-size: 12px;
+">No</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-6">
+                                            <textarea name="medicalhistoryDescription"
+                                                      placeholder="Medical History Description" class="form-control"
+                                                      rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="custom-file col-12">
+                                            <input type="file" name="medicalhistoryFile"
+                                                   class="custom-file-input"
+                                                   multiple="multiple" id="customFile"
+                                                   accept="image/png,  image/jpeg">
+                                            <label class="custom-file-label" for="customFile">Upload Medical
+                                                Reports</label>
+                                        </div>
+
+
+                                        <div class="card-footer text-right">
+                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        {% include 'admin/footer.html' %}
+
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>

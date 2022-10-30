@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'user/header.html' %}
+
+
+        {% include 'user/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form action="/user/insert_complaint" method="post">
+
+                                    <div class="card-header">
+                                        <h4>Post Complaint</h4>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="text" name="userComplaintSubject" class="form-control"
+                                                   placeholder="Enter Your Complain Subject">
+                                        </div>
+                                        <div class="form-group">
+                                            <label></label>
+                                            <textarea class="form-control" name="userComplaintDescription"
+                                                      placeholder="Enter About Your Complaint..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <button class="btn btn-primary">Post</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form action="/user/insert_complaint" method="post">
+
+                                    <div class="card-header">
+                                        <h4>View Complaint</h4>
+                                    </div>
+
+                                    <div class="card-body">
+                                        {% if complaint_vo_updated_list %}
+                                            {% for complaint_vo_data in complaint_vo_updated_list %}
+                                                <div class="d-flex align-items-start">
+                                                    <img src="../../static/adminResources/image/user-1.png" height="70"
+                                                         width="70" alt="profile" class="img-sm rounded-circle">
+                                                    <div class="ml-4" style="width: 100%">
+                                                        <h6>
+                                                            {{ complaint_vo_data[0]['login_username'] }}
+                                                            <div id="div2">
+                                                                <small class="ml-4 text-muted float-right"><i
+                                                                        class="fa fa-clock mr-1"></i>{{ complaint_vo_data[1]['complaint_datetime'] }}
+                                                                </small>
+                                                            </div>
+                                                        </h6>
+                                                        <p class="mb-0">
+                                                            {{ complaint_vo_data[1]['complaint_subject'] }}
+                                                        </p>
+                                                        <p>
+                                                            {{ complaint_vo_data[1]['complaint_description'] }}
+                                                        </p>
+                                                        <p class="small text-muted mt-2 mb-0">
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                {% if complaint_vo_data[1]['complaint_reply_description'] != None %}
+                                                    <div class="d-flex align-items-start" style="margin-left: 250px">
+                                                        <img src="../../static/adminResources/image/user-1.png"
+                                                             height="70"
+                                                             width="70" alt="profile" class="img-sm rounded-circle">
+                                                        <div class="ml-4" style="width: 100%">
+                                                            <h6>
+                                                                {{ admin_login_username }}
+                                                                <div id="div2">
+                                                                    <small class="ml-4 text-muted float-right"><i
+                                                                            class="fa fa-clock mr-1"></i>{{ complaint_vo_data[1]['complaint_reply_datetime'] }}
+                                                                    </small>
+                                                                </div>
+                                                            </h6>
+                                                            <p>
+                                                                {{ complaint_vo_data[1]['complaint_reply_description'] }}
+                                                            </p>
+                                                            <p class="small text-muted mt-2 mb-0">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    {#<div class="content-wrapper">
+                        <div class="card">
+                            <div class="card-body" id="top-5-scroll" style="overflow: hidden">
+                                <h4 class="card-title">View Complain</h4>
+                                {% if complaint_vo_updated_list %}
+                                    {% for complaint_vo_data in complaint_vo_updated_list %}
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <div class="d-flex align-items-start profile-feed-item">
+                                                    <img src="../../static/adminResources/image/user-1.png"
+                                                         height="70" width="70"
+                                                         alt="profile"
+                                                         class="img-sm rounded-circle">
+                                                    <div class="ml-4">
+                                                        <h6>
+                                                            {{ complaint_vo_data[0]['login_username'] }}
+                                                            <div id="div2">
+                                                                <small class="ml-4 text-muted"><i
+                                                                        class="mdi mdi-clock mr-1"></i>{{ complaint_vo_data[1]['complaint_datetime'] }}
+                                                                </small>
+                                                            </div>
+                                                        </h6>
+                                                        <p> &nbsp;&nbsp;&nbsp;
+                                                            <u>Complaint Subject</u>:
+                                                            &nbsp;&nbsp;{{ complaint_vo_data[1]['complaint_subject'] }}
+                                                        </p>
+                                                        <p>
+                                                            {{ complaint_vo_data[1]['complaint_description'] }}
+                                                        </p>
+                                                        <p class="small text-muted mt-2 mb-0">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% if complaint_vo_data[1]['complaint_reply_description'] != None %}
+                                                <div style="margin-left: 180px" class="table-responsive">
+                                                    <div class="d-flex align-items-start profile-feed-item">
+                                                        <img src="../../static/adminResources/image/user-1.png"
+                                                             width="70" height="70" alt="profile"
+                                                             class="img-sm rounded-circle">
+                                                        <div class="ml-4">
+                                                            <h6>
+                                                                {{ admin_login_username }}
+                                                                <div id="div2">
+                                                                    <small class="ml-4 text-muted"><i
+                                                                            class="mdi mdi-clock mr-1"></i>{{ complaint_vo_data[1]['complaint_reply_datetime'] }}
+                                                                    </small>
+                                                                </div>
+                                                            </h6>
+                                                            <p> &nbsp;&nbsp;&nbsp;
+                                                                Complain Subject:
+                                                                &nbsp;&nbsp;{{ complaint_vo_data[1]['complaint_subject'] }}
+                                                            </p>
+                                                            <p>
+                                                                {{ complaint_vo_data[1]['complaint_reply_description'] }}
+                                                            </p>
+                                                            <p class="small text-muted mt-2 mb-0">
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="row" style="margin-left:600px;">
+                                        <h5>No Complain Available !</h5>
+                                    </div>
+                                {% endif %}
+                        </div>
+                    </div>#}
+                </div>
+
+
+        </div>
+
+    </div>
+    </section>
+
+
+
+</div>
+
+{% include 'user/footer.html' %}
+
+</div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health And Wellnes</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/star.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'user/header.html' %}
+
+
+        {% include 'user/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-6 col-md-6 col-lg-6">
+                            <div class="card">
+                                <form action="/user/insert_feedback" method="post">
+                                    <div class="card-header">
+                                        <h4>Post Feedback</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <fieldset class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <div class="form-check">
+                                                        <div class="rate">
+                                                            <input type="radio" id="star5" name="feedbackRate"
+                                                                   value="5"/><label
+                                                                for="star5"
+                                                                title="text">5
+                                                            stars</label>
+                                                            <input type="radio" id="star4" name="feedbackRate"
+                                                                   value="4"/><label
+                                                                for="star4"
+                                                                title="text">4
+                                                            stars</label>
+                                                            <input type="radio" id="star3" name="feedbackRate"
+                                                                   value="3"/><label
+                                                                for="star3"
+                                                                title="text">3
+                                                            stars</label>
+                                                            <input type="radio" id="star2" name="feedbackRate"
+                                                                   value="2"/><label
+                                                                for="star2"
+                                                                title="text">2
+                                                            stars</label>
+                                                            <input type="radio" id="star1" name="feedbackRate"
+                                                                   value="1"/><label
+                                                                for="star1"
+                                                                title="text">1
+                                                            star</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <div class="form-group mb-0">
+                                            <textarea class="form-control" rows="5" name="feedbackDescription"
+                                                      placeholder="Write Your Feedback..."></textarea>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button class="btn btn-primary"><i class="far fa-paper-plane m-r-5"></i>Post
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-12 col-sm-6 col-lg-6">
+                            <div class="card gradient-bottom m-b-0">
+                                <div class="card-header">
+                                    <h4>Feedbacks</h4>
+                                </div>
+                                <div class="card-body" id="top-5-scroll" tabindex="2"
+                                     style="height: 315px; overflow: hidden; outline: none;">
+
+                                    {% if feedback_vo_list %}
+                                        {% for feedback_vo_data in feedback_vo_list %}
+                                            <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+
+                                                <!--############## Feedback For Loop Start Here ################-->
+
+                                                <li class="media">
+                                                    <img alt="image" class="mr-3 rounded-circle" width="70"
+                                                         src="../../static/adminResources/image/user-1.png">
+                                                    <div class="media-body">
+                                                        <div class="media-title mb-1"
+                                                             style="float: left"> {{ feedback_vo_data[0]['login_username'] }}</div>
+
+                                                        <div style="float: right">
+                                                    <span>
+
+                                                        <!--############## Star For Loop Start Here ################-->
+
+                                                        {% for rating_star in range(feedback_vo_data[1]['feedback_rating']) %}
+                                                            <i class="fa fa-star" style="color:#5e6cdd;"></i>
+                                                        {% endfor %}
+                                                        <!--############## Star For Loop End Here ################-->
+
+                                                    </span>
+                                                        </div>
+                                                        <div class="text-time"
+                                                             style="clear: left">{{ feedback_vo_data[1]['feedback_datetime'] }}</div>
+                                                        <div class="media-description text-muted"> {{ feedback_vo_data[1]['feedback_description'] }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+
+
+                                        {% endfor %}
+
+                                    {% else %}
+                                        <div class="row" style="margin-left:600px;">
+                                            <h5>No Feedback Available !</h5>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+        </div>
+
+        {% include 'admin/footer.html' %}
+    </div>
+    <!-- General JS Scripts -->
+    <script src="../../static/adminResources/js/app.min.js"></script>
+    <!-- JS Libraies -->
+    <!-- Page Specific JS File -->
+    <!-- Template JS File -->
+    <script src="../../static/adminResources/js/scripts.js"></script>
+    <!-- Custom JS File -->
+    <script src="../../static/adminResources/js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            iziToast.error({
+                title: 'Hello, world!',
+                message: 'This awesome plugin is made by iziToast',
+                position: 'topRight'
+            });
+        });
+    </script>
+</body>
+
+</html>

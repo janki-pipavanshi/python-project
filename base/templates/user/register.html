@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/selectric.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+    <style>
+        .bgimg {
+            background-image: url('../../static/adminResources/image/hero-bg.png');
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="bgimg">
+<div id="app">
+    <section class="section">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h4>Register</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="/user/insert_user">
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <input id="first_name" type="text" class="form-control" name="user_firstname"
+                                               placeholder="Enter First Name">
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <input id="last_name" type="text" class="form-control" name="user_lastname"
+                                               placeholder="Enter Last Name">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <input id="blood_group" type="text" class="form-control"
+                                               placeholder="Enter Blood Group"
+                                               name="user_blood_group">
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <div class="custom-control custom-radio custom-control-inline"
+                                             style="margin: 8px 70px 0px 35px">
+                                            <input type="radio" id="customRadioInline1" name="user_gender"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline1" style="
+    color: black;
+    font-size: 12px;
+">Male</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="customRadioInline2" name="user_gender"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadioInline2" style="
+    color: black;
+    font-size: 12px;
+">Female</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <textarea type="address" class="form-control" name="user_address"
+                                              placeholder="Enter Address"></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-6">
+                                        <input id="date_of_birth" type="text" placeholder="Date of Birth"
+                                               class="form-control"
+                                               name="user_date_of_birth" onfocus="(this.type='date')">
+                                    </div>
+
+                                    <div class="form-group col-6">
+                                        <input id="contact_no" placeholder="Enter Contact No." type="tel"
+                                               class="form-control" name="user_contact">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input id="username" type="email" class="form-control" name="loginUsername"
+                                           placeholder="Enter User Name/ Email Id"></div>
+
+                                <div class="form-group mb-0">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                        Register
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mb-4 text-muted text-center">
+                            Already Registered? <a href="/">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<script src="../../static/adminResources/js/jquery.pwstrength.min.js"></script>
+<script src="../../static/adminResources/js/jquery.selectric.min.js"></script>
+<!-- Page Specific JS File -->
+<script src="../../static/adminResources/js/auth-register.js"></script>
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+</body>
+
+</html>

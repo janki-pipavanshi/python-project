@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div class="loader"></div>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'admin/header.html' %}
+
+
+        {% include 'admin/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form method="post" action="/admin/insert_medicalreport" enctype="multipart/form-data">
+                                    <div class="card-header">
+                                        <h4>Upload Medical Report</h4>
+                                    </div>
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="PatientName"
+                                                       name="medicalreportPatientName"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Disease Name"
+                                                       name="medicalreportDiseaseName" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Hospital Name"
+                                                       name="medicalreportHospitalName" class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="Age when occured"
+                                                       name="medicalreportAge" class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="date" placeholder="Date of Report"
+                                                       name="medicalreportDate"
+                                                       class="form-control" onfocus="(this.type='date')">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="date" placeholder="Date of Birth"
+                                                       name="medicalreportBirthDate" class="form-control"
+                                                       onfocus="(this.type='date')">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Symptoms" name="medicalreportSymptoms"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Blood Group"
+                                                       name="medicalreportBloodGroup"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="Height" name="medicalreportHeight"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <input type="number" placeholder="weight" name="medicalreportWeight"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Doctor Name"
+                                                       name="medicalreportDoctorName"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <input type="text" placeholder="Allergy" name="medicalreportAllergy"
+                                                       class="form-control"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <input type="text"
+                                                       placeholder="Do You have any Disablity?(Write name OR NA)"
+                                                       name="medicalreportDisability" class="form-control"
+                                                       required="">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="inherited">Is this diseases inherited?</label>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="customRadioInline1"
+                                                           name="medicalreportInherited"
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadioInline1" style="
+    color: black;
+    font-size: 12px;
+">Yes</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="customRadioInline2"
+                                                           name="medicalreportInherited"
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="customRadioInline2" style="
+    color: black;
+    font-size: 12px;
+">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                            <textarea name="medicalreportDescription"
+                                                      placeholder="Medical Report Description" class="form-control"
+                                                      required=""
+                                                      cols="6"
+                                                      rows="5"></textarea>
+                                            </div>
+                                            <div class="custom-file col-6">
+                                                <input type="file" name="medicalreportFile"
+                                                       class="custom-file-input"
+                                                       multiple="multiple" id="customFile"
+                                                       accept="image/png, image/jpeg ">
+                                                <label class="custom-file-label" for="customFile">Choose
+                                                    file</label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-footer text-right">
+                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        {% include 'admin/footer.html' %}
+
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>

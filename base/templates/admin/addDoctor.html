@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div class="loader"></div>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'admin/header.html' %}
+
+
+        {% include 'admin/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form action="/admin/insert_doctor" method="post" enctype="multipart/form-data">
+                                    <div class="card-header">
+                                        <h4>Add Doctor</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Doctor Name</label>
+                                            <input type="text" name="doctor_name" class="form-control" required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Select</label>
+                                            <select class="form-control" name="doctor_department">
+                                                {% for i in department_vo_list %}
+
+                                                    <option>{{ i['department_name'] }}</option>
+
+
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Years of Experience</label>
+                                            <input type="number" name="doctor_years_of_experience" class="form-control"
+                                                   required="">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label for="gender">Gender</label><br>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadioInline1" name="doctor_gender"
+                                                       class="custom-control-input" required="">
+                                                <label class="custom-control-label" for="customRadioInline1" style="
+    color: black;
+    font-size: 12px;
+">Male</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" id="customRadioInline2" name="doctor_gender"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label" for="customRadioInline2" style="
+    color: black;
+    font-size: 12px;
+">Female</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Educational Qualification</label>
+                                            <input type="text" name="doctor_educational_qualification"
+                                                   class="form-control" required="">
+                                        </div>
+                                        <div class="custom-file col-6">
+                                            <input type="file" name="doctorimageFile"
+                                                   class="custom-file-input"
+                                                   multiple="multiple" id="customFile" required=""
+                                                   accept="image/png,  image/jpeg, image/jpg">
+                                            <label class="custom-file-label" for="customFile">Upload doctor
+                                                image</label>
+                                        </div>
+
+
+                                        <div class="card-footer text-right">
+                                            <button class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    {% include 'admin/footer.html' %}
+
+</div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>

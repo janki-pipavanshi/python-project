@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Health & Wellness</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div class="loader"></div>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'admin/header.html' %}
+
+
+        {% include 'admin/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-lg-12">
+                            <div class="card">
+                                <form action="/admin/update_slot" method="post">
+                                    {% for row in slot_vo_list %}
+                                    <div class="card-header">
+                                        <h4>Edit Slot</h4>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="slot_id" value="{{ row['slot_id'] }}"
+                                               class="form-control" required="">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Slot Name</label>
+                                            <input type="text" name="slot_name" value="{{ row['slot_name'] }}"
+                                                   class="form-control" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Slot Date</label>
+                                            <input type="date" name="slot_date"
+                                                   value="{{ row['slot_date'] }}" class="form-control"
+                                                   required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Slot Start Duration</label>
+                                            <input type="time" name="slot_start_duration"
+                                                   value="{{ row['slot_start_duration'] }}" class="form-control"
+                                                   required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Slot End Duration</label>
+                                            <input type="time" name="slot_end_duration"
+                                                   value="{{ row['slot_end_duration'] }}" class="form-control"
+                                                   required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Slot Capacity</label>
+                                            <input type="number" name="slot_capacity" value="{{ row['slot_capacity'] }}"
+                                                   class="form-control" required="">
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        {% include 'admin/footer.html' %}
+
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>
